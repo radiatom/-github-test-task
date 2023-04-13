@@ -50,18 +50,33 @@ const ToDoListReducer = (state: defoultStateType = defoultState, action: setData
 
 export const setToDoListIssues = (owner: string, repo: string) => async (dispatch: setDataType) => {
     const data = await getData(owner, repo)
-    const res = []
-    for (let a = 0; a <= data.length; a++) {
-        res.push({
-            title: data[a].title,
-            number: data[a].number,
-            created_at: data[a].created_at,
-            login: data[a].user.login,
-            comments: data[a].comments
-        })
+
+
+    if (data !== undefined) {
+        const res = []
+        for (let a = 0; a <= data.length; a++) {
+            console.log(data[a].title)
+            let obj = {}
+            //@ts-ignore
+            obj.title = data[a].title
+            //@ts-ignore
+
+            obj.number = data[a].number
+            //@ts-ignore
+
+            obj.created_at = data[a].created_at
+            //@ts-ignore
+
+            obj.login = data[a].user.login
+            //@ts-ignore
+
+            obj.comments = data[a].comments
+            res.push(obj)
+        }
+        //@ts-ignore
+        dispatch(setData(res))
     }
-    //@ts-ignore
-    dispatch(setData(res))
+
 
 }
 export default ToDoListReducer
