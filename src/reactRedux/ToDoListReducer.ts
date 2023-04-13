@@ -1,6 +1,6 @@
 import { getData } from "../api/api"
 
-type issueType = {
+export type issueType = {
     title: string | null
     number: number | null
     created_at: string | null
@@ -11,7 +11,13 @@ type setDataType = {
     type: typeof SET_DATA
     data: Array<issueType>
 }
-
+type DataItemType = {
+    title: string;
+    number: number;
+    created_at: string;
+    login: string;
+    comments: number;
+}
 const SET_DATA: string = 'ToDoListReducer/SET_DATA'
 export const setData = (res: Array<issueType>): setDataType => {
     return {
@@ -19,8 +25,8 @@ export const setData = (res: Array<issueType>): setDataType => {
         data: res
     }
 }
-type dataType = Array<issueType>
-type defoultStateType = {
+export type dataType = Array<issueType>
+export type defoultStateType = {
     data: dataType
 }
 const defoultState: defoultStateType = {
@@ -53,26 +59,19 @@ export const setToDoListIssues = (owner: string, repo: string) => async (dispatc
 
 
     if (data !== undefined) {
-        const res = []
-        for (let a = 0; a <= data.length; a++) {
-            console.log(data[a].title)
-            let obj = {}
-            //@ts-ignore
-            obj.title = data[a].title
-            //@ts-ignore
-
-            obj.number = data[a].number
-            //@ts-ignore
-
-            obj.created_at = data[a].created_at
-            //@ts-ignore
-
-            obj.login = data[a].user.login
-            //@ts-ignore
-
-            obj.comments = data[a].comments
+        const res: Array<DataItemType> = []
+        // console.log(res)
+        for (let a = 0; a < data.length; a++) {
+            let obj: DataItemType = {
+                title: data[a].title,
+                number: data[a].number,
+                created_at: data[a].created_at,
+                login: data[a].user.login,
+                comments: data[a].comments,
+            }
             res.push(obj)
         }
+        // console.log(res)
         //@ts-ignore
         dispatch(setData(res))
     }

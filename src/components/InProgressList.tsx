@@ -8,7 +8,7 @@ const InProgressList = (props: any) => {
         <div >
             <h3>In Progress</h3>
             <div>
-                <Issue/>
+                {/* <Issue/> */}
             </div>
         </div>
     );

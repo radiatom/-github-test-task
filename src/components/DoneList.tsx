@@ -8,7 +8,7 @@ const DoneList = (props: any) => {
         <div >
             <h3>Done</h3>
             <div>
-                <Issue/>
+                {/* <Issue/> */}
             </div>
         </div>
     );
