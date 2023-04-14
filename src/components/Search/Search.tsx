@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { setToDoListIssues } from '../../reactRedux/ToDoListReducer';
 import { setInProgressListIssues } from '../../reactRedux/InProgressListReducer';
 import { setDoneListIssues } from '../../reactRedux/DoneListReducer';
-
+import Form from 'react-bootstrap/Form'
+import { Container } from 'react-bootstrap';
 
 
 const Search = () => {
@@ -33,14 +34,20 @@ const Search = () => {
         openLink()
     }
     return (
-        <div >
-            <input placeholder="Enter repo URL" type="text" value={value} onChange={handleChange} />
-            <button onClick={click}>Load issues</button>
-            {look ?
-                <Links owner={owner} repo={repo} />
-                :
-                null}
-            https://github.com/facebook/react
+        <div>
+            <Container className='text-center m-5 d-flex align-items-center' >
+                <Form.Label htmlFor="disabledTextInput" className="flex-grow-1"><input className="w-100 mt-2" placeholder="Enter repo URL" type="text" value={value} onChange={handleChange} /></Form.Label>
+
+                <button className='m-2' onClick={click}>Load issues</button>
+
+            </Container>
+            <Container>
+                {look ?
+                    <Links owner={owner} repo={repo} />
+                    :
+                    null}
+            <p>https://github.com/facebook/react</p>
+            </Container>
         </div>
     );
 }
