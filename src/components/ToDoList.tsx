@@ -6,15 +6,20 @@ import { issueType } from '../reactRedux/ToDoListReducer';
 
 
 
-const ToDoList = (props: any) => {
+const ToDoList = () => {
     const testData = useSelector(issueToDoListDataSelector)
-
     return (
         <div >
-            <h3>ToDo</h3>
-            <div>
-                {testData.map((el: issueType) => ( <Issue key={el.number} el={el} /> ))}
-            </div>
+            {testData[0].number !== null ?
+                <div>
+                    <h3>ToDo</h3>
+                    <div>
+                        {testData.map((el: issueType) => (<Issue key={el.number} el={el} />))}
+                    </div>
+                </div>
+                :
+                null
+            }
         </div>
     );
 }

@@ -14,7 +14,7 @@ import axios from "axios"
 //         })
 // }
 export const getData = (owner: string, repo: string) => {
-    return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues`)
+    return axios.get(`https://api.github.com/repos/${owner}/${repo}/issues?state=open&per_page=100`)
         .then((res) => {
             return res.data
         })

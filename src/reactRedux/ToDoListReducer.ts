@@ -62,14 +62,16 @@ export const setToDoListIssues = (owner: string, repo: string) => async (dispatc
         const res: Array<DataItemType> = []
         // console.log(res)
         for (let a = 0; a < data.length; a++) {
-            let obj: DataItemType = {
-                title: data[a].title,
-                number: data[a].number,
-                created_at: data[a].created_at,
-                login: data[a].user.login,
-                comments: data[a].comments,
+            if (data[a].created_at === data[a].updated_at) {
+                let obj: DataItemType = {
+                    title: data[a].title,
+                    number: data[a].number,
+                    created_at: data[a].created_at,
+                    login: data[a].user.login,
+                    comments: data[a].comments,
+                }
+                res.push(obj)
             }
-            res.push(obj)
         }
         // console.log(res)
         //@ts-ignore

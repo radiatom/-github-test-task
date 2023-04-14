@@ -10,7 +10,10 @@ const Search = (props: any) => {
     const handleChange = (event: any) => {
         setValue(event.target.value);
     }
-    
+    const [look, setLook] = useState(false)
+    const openLink = () => {
+        setLook(!look);
+    }
     const splitUrlOwer = value.split('/')
     const owner = splitUrlOwer[3]
 
@@ -18,14 +21,19 @@ const Search = (props: any) => {
     const repo = splitUrlRepo[4]
 
     const dispatch = useDispatch()
-    const click=()=>{
-        dispatch(setToDoListIssues(owner,repo))
+    const click = () => {
+        //@ts-ignore
+        dispatch(setToDoListIssues(owner, repo))
+        openLink()
     }
     return (
         <div >
-            <input type="text" value={value} onChange={handleChange} />
+            <input placeholder="Enter repo URL" type="text" value={value} onChange={handleChange} />
             <button onClick={click}>Load issues</button>
-            <Links owner={owner} repo={repo}/>
+            {look ?
+                <Links owner={owner} repo={repo} />
+                :
+                null}
             https://github.com/facebook/react
         </div>
     );
