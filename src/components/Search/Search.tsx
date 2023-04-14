@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Links from './Links';
+import Links from './Links/Links';
 import { useDispatch } from 'react-redux';
-import { setToDoListIssues } from '../reactRedux/ToDoListReducer';
-import { setInProgressListIssues } from '../reactRedux/InProgressListReducer';
-import { setDoneListIssues } from '../reactRedux/DoneListReducer';
+import { setToDoListIssues } from '../../reactRedux/ToDoListReducer';
+import { setInProgressListIssues } from '../../reactRedux/InProgressListReducer';
+import { setDoneListIssues } from '../../reactRedux/DoneListReducer';
 
 
 
@@ -14,7 +14,7 @@ const Search = (props: any) => {
     }
     const [look, setLook] = useState(false)
     const openLink = () => {
-        setLook(!look);
+        setLook(true);
     }
     const splitUrlOwer = value.split('/')
     const owner = splitUrlOwer[3]

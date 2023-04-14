@@ -1,5 +1,5 @@
 import React from 'react';
-import { issueType } from '../reactRedux/ToDoListReducer';
+import { issueType } from '../../reactRedux/ToDoListReducer';
 
 type propsType = {
     el: issueType

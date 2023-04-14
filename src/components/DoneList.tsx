@@ -1,5 +1,5 @@
 import React from 'react';
-import Issue from './Issue';
+import Issue from './Issue/Issue';
 import { useSelector } from 'react-redux';
 import { issueDoneListDataSelector } from '../selectors/selectors';
 import { issueType } from '../reactRedux/ToDoListReducer';
