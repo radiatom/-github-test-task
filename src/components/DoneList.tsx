@@ -6,7 +6,7 @@ import { issueType } from '../reactRedux/ToDoListReducer';
 
 
 
-const DoneList = (props: any) => {
+const DoneList = () => {
     const testData = useSelector(issueDoneListDataSelector)
     return (
         <div >

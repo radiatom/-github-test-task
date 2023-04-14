@@ -5,7 +5,7 @@ import { issueInProgressListDataSelector } from '../selectors/selectors';
 import { issueType } from '../reactRedux/ToDoListReducer';
 
 
-const InProgressList = (props: any) => {
+const InProgressList = () => {
     const testData = useSelector(issueInProgressListDataSelector)
     return (
         <div >

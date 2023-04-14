@@ -7,7 +7,7 @@ import { setDoneListIssues } from '../../reactRedux/DoneListReducer';
 
 
 
-const Search = (props: any) => {
+const Search = () => {
     const [value, setValue] = useState('')
     const handleChange = (event: any) => {
         setValue(event.target.value);
