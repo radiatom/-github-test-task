@@ -25,11 +25,8 @@ const Search = () => {
 
     const dispatch = useDispatch()
     const click = () => {
-        //@ts-ignore
         dispatch(setToDoListIssues(owner, repo))
-        //@ts-ignore
         dispatch(setInProgressListIssues(owner, repo))
-        //@ts-ignore
         dispatch(setDoneListIssues(owner, repo))
         openLink()
     }

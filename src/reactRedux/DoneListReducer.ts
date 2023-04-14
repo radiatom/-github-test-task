@@ -1,10 +1,13 @@
+import { ThunkDispatch } from "redux-thunk"
 import { getDataClosedIssues } from "../api/api"
 import { DataItemType, defoultStateType, issueType } from "./ToDoListReducer"
+
 
 export type setDataDoneListType = {
     type: typeof SET_DATA_DONE_LIST
     data: Array<issueType>
 }
+
 
 const SET_DATA_DONE_LIST: string = 'DoneListReducer/SET_DATA_DONE_LIST'
 export const setDataDoneList = (res: Array<issueType>): setDataDoneListType => {
@@ -36,7 +39,7 @@ const DoneListReducer = (state: defoultStateType = defoultState, action: setData
     }
 }
 
-export const setDoneListIssues = (owner: string, repo: string) => async (dispatch: setDataDoneListType) => {
+export const setDoneListIssues = (owner: string, repo: string): any => async (dispatch: ThunkDispatch<defoultStateType, unknown, setDataDoneListType>) => {
     const data = await getDataClosedIssues(owner, repo)
     if (data !== undefined) {
         const res: Array<DataItemType> = []
@@ -50,7 +53,6 @@ export const setDoneListIssues = (owner: string, repo: string) => async (dispatc
             }
             res.push(obj)
         }
-        //@ts-ignore
         dispatch(setDataDoneList(res))
     }
 }

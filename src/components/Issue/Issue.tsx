@@ -10,7 +10,7 @@ const Issue = (props: propsType) => {
     return (
         <Container>
             <Card border="primary p-2 mt-2 mb-2 " >
-                <p className='fw-medium' >{props.el.title}</p>
+                <p className='fw-bold' >{props.el.title}</p>
                 <p>#{props.el.number} time of last activity: {props.el.created_at}</p>
                 <p>{props.el.login} | coments: {props.el.comments}</p>
             </Card>

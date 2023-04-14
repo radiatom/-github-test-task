@@ -9,6 +9,9 @@ const redusers = combineReducers({
     inProgressListIssues: InProgressListReducer,
     doneListIssues: DoneListReducer
 })
+type reducersType = typeof redusers
+export type appStateType= ReturnType<reducersType>
+
 //@ts-ignore
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
  const store = legacy_createStore(redusers,composeEnhancers(applyMiddleware(thunkMiddleware)));

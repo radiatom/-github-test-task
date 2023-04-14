@@ -1,3 +1,4 @@
+import { ThunkDispatch } from "redux-thunk"
 import { getDataOpenIssues } from "../api/api"
 import { DataItemType, defoultStateType, issueType } from "./ToDoListReducer"
 
@@ -36,7 +37,7 @@ const InProgressListReducer = (state: defoultStateType = defoultState, action: s
     }
 }
 
-export const setInProgressListIssues = (owner: string, repo: string) => async (dispatch: setDataInProgressListType) => {
+export const setInProgressListIssues = (owner: string, repo: string): any => async (dispatch: ThunkDispatch<defoultStateType, unknown, setDataInProgressListType>) => {
     const data = await getDataOpenIssues(owner, repo)
     if (data !== undefined) {
         const res: Array<DataItemType> = []
@@ -52,7 +53,6 @@ export const setInProgressListIssues = (owner: string, repo: string) => async (d
                 res.push(obj)
             }
         }
-        //@ts-ignore
         dispatch(setDataInProgressList(res))
     }
 }
