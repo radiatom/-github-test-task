@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Links from './Links';
 import { useDispatch } from 'react-redux';
 import { setToDoListIssues } from '../reactRedux/ToDoListReducer';
+import { setInProgressListIssues } from '../reactRedux/InProgressListReducer';
 
 
 
@@ -24,6 +25,8 @@ const Search = (props: any) => {
     const click = () => {
         //@ts-ignore
         dispatch(setToDoListIssues(owner, repo))
+        //@ts-ignore
+        dispatch(setInProgressListIssues(owner, repo))
         openLink()
     }
     return (

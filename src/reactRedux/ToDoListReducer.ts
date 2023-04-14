@@ -1,4 +1,4 @@
-import { getData } from "../api/api"
+import { getDataOpenIssues } from "../api/api"
 
 export type issueType = {
     title: string | null
@@ -7,27 +7,28 @@ export type issueType = {
     login: string | null
     comments: number | null
 }
-type setDataType = {
-    type: typeof SET_DATA
+export type setDataToDoListType = {
+    type: typeof SET_DATA_TODO_LIST
     data: Array<issueType>
 }
-type DataItemType = {
+export type DataItemType = {
     title: string;
     number: number;
     created_at: string;
     login: string;
     comments: number;
 }
-const SET_DATA: string = 'ToDoListReducer/SET_DATA'
-export const setData = (res: Array<issueType>): setDataType => {
-    return {
-        type: SET_DATA,
-        data: res
-    }
-}
 export type dataType = Array<issueType>
 export type defoultStateType = {
     data: dataType
+}
+
+const SET_DATA_TODO_LIST: string = 'ToDoListReducer/SET_DATA_TODO_LIST'
+export const setDataToDoList = (res: Array<issueType>): setDataToDoListType => {
+    return {
+        type: SET_DATA_TODO_LIST,
+        data: res
+    }
 }
 const defoultState: defoultStateType = {
     data: [
@@ -41,9 +42,9 @@ const defoultState: defoultStateType = {
     ]
 }
 
-const ToDoListReducer = (state: defoultStateType = defoultState, action: setDataType): defoultStateType => {
+const ToDoListReducer = (state: defoultStateType = defoultState, action: setDataToDoListType): defoultStateType => {
     switch (action.type) {
-        case SET_DATA:
+        case SET_DATA_TODO_LIST:
             return {
                 ...state,
                 data: action.data
@@ -54,13 +55,10 @@ const ToDoListReducer = (state: defoultStateType = defoultState, action: setData
 }
 
 
-export const setToDoListIssues = (owner: string, repo: string) => async (dispatch: setDataType) => {
-    const data = await getData(owner, repo)
-
-
+export const setToDoListIssues = (owner: string, repo: string) => async (dispatch: setDataToDoListType) => {
+    const data = await getDataOpenIssues(owner, repo)
     if (data !== undefined) {
         const res: Array<DataItemType> = []
-        // console.log(res)
         for (let a = 0; a < data.length; a++) {
             if (data[a].created_at === data[a].updated_at) {
                 let obj: DataItemType = {
@@ -73,11 +71,8 @@ export const setToDoListIssues = (owner: string, repo: string) => async (dispatc
                 res.push(obj)
             }
         }
-        // console.log(res)
         //@ts-ignore
-        dispatch(setData(res))
+        dispatch(setDataToDoList(res))
     }
-
-
 }
 export default ToDoListReducer
