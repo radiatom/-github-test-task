@@ -6,3 +6,6 @@ export const issueToDoListDataSelector = (state: any) => {
 export const issueInProgressListDataSelector = (state: any) => {
     return state.inProgressListIssues.data
 }
+export const issueDoneListDataSelector = (state: any) => {
+    return state.doneListIssues.data
+}

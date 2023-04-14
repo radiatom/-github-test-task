@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, compose, legacy_createStore } from "r
 import thunkMiddleware from "redux-thunk";
 import ToDoListReducer from "./ToDoListReducer";
 import InProgressListReducer from "./InProgressListReducer";
+import DoneListReducer from "./DoneListReducer";
 
 const redusers = combineReducers({
     toDoListIssues: ToDoListReducer,
     inProgressListIssues: InProgressListReducer,
+    doneListIssues: DoneListReducer
 })
 //@ts-ignore
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

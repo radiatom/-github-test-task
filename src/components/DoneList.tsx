@@ -1,15 +1,25 @@
 import React from 'react';
 import Issue from './Issue';
+import { useSelector } from 'react-redux';
+import { issueDoneListDataSelector } from '../selectors/selectors';
+import { issueType } from '../reactRedux/ToDoListReducer';
 
 
 
 const DoneList = (props: any) => {
+    const testData = useSelector(issueDoneListDataSelector)
     return (
         <div >
-            <h3>Done</h3>
-            <div>
-                {/* <Issue/> */}
-            </div>
+            {testData[0].number !== null ?
+                <div>
+                    <h3>Done</h3>
+                    <div>
+                        {testData.map((el: issueType) => (<Issue key={el.number} el={el} />))}
+                    </div>
+                </div>
+                :
+                null
+            }
         </div>
     );
 }

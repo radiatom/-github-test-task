@@ -3,6 +3,7 @@ import Links from './Links';
 import { useDispatch } from 'react-redux';
 import { setToDoListIssues } from '../reactRedux/ToDoListReducer';
 import { setInProgressListIssues } from '../reactRedux/InProgressListReducer';
+import { setDoneListIssues } from '../reactRedux/DoneListReducer';
 
 
 
@@ -27,6 +28,8 @@ const Search = (props: any) => {
         dispatch(setToDoListIssues(owner, repo))
         //@ts-ignore
         dispatch(setInProgressListIssues(owner, repo))
+        //@ts-ignore
+        dispatch(setDoneListIssues(owner, repo))
         openLink()
     }
     return (
