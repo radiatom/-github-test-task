@@ -15,15 +15,7 @@ export const setDataInProgressList = (res: Array<issueType>): setDataInProgressL
     }
 }
 const defoultState: defoultStateType = {
-    data: [
-        {
-            title: null,
-            number: null,
-            created_at: null,
-            login: null,
-            comments: null
-        }
-    ]
+    data: []
 }
 const InProgressListReducer = (state: defoultStateType = defoultState, action: setDataInProgressListType): defoultStateType => {
     switch (action.type) {
@@ -44,6 +36,7 @@ export const setInProgressListIssues = (owner: string, repo: string): any => asy
         for (let a = 0; a < data.length; a++) {
             if (data[a].created_at !== data[a].updated_at) {
                 let obj: DataItemType = {
+                    id:a+1,
                     title: data[a].title,
                     number: data[a].number,
                     created_at: data[a].updated_at,

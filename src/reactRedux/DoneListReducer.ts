@@ -17,15 +17,7 @@ export const setDataDoneList = (res: Array<issueType>): setDataDoneListType => {
     }
 }
 const defoultState: defoultStateType = {
-    data: [
-        {
-            title: null,
-            number: null,
-            created_at: null,
-            login: null,
-            comments: null
-        }
-    ]
+    data: []
 }
 const DoneListReducer = (state: defoultStateType = defoultState, action: setDataDoneListType): defoultStateType => {
     switch (action.type) {
@@ -45,6 +37,7 @@ export const setDoneListIssues = (owner: string, repo: string): any => async (di
         const res: Array<DataItemType> = []
         for (let a = 0; a < data.length; a++) {
             let obj: DataItemType = {
+                id:a+1,
                 title: data[a].title,
                 number: data[a].number,
                 created_at: data[a].closed_at,

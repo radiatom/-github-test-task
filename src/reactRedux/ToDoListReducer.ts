@@ -2,17 +2,19 @@ import { ThunkDispatch } from "redux-thunk"
 import { getDataOpenIssues } from "../api/api"
 
 export type issueType = {
-    title: string | null
-    number: number | null
-    created_at: string | null
-    login: string | null
-    comments: number | null
+    id:number
+    title: string
+    number: number
+    created_at: string
+    login: string
+    comments: number
 }
 export type setDataToDoListType = {
     type: typeof SET_DATA_TODO_LIST
     data: Array<issueType>
 }
 export type DataItemType = {
+    id:number
     title: string;
     number: number;
     created_at: string;
@@ -32,15 +34,7 @@ export const setDataToDoList = (res: Array<issueType>): setDataToDoListType => {
     }
 }
 const defoultState: defoultStateType = {
-    data: [
-        {
-            title: null,
-            number: null,
-            created_at: null,
-            login: null,
-            comments: null
-        }
-    ]
+    data: []
 }
 
 const ToDoListReducer = (state: defoultStateType = defoultState, action: setDataToDoListType): defoultStateType => {
@@ -63,6 +57,7 @@ export const setToDoListIssues = (owner: string, repo: string): any => async (di
         for (let a = 0; a < data.length; a++) {
             if (data[a].created_at === data[a].updated_at) {
                 let obj: DataItemType = {
+                    id:a+1,
                     title: data[a].title,
                     number: data[a].number,
                     created_at: data[a].created_at,

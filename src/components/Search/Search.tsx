@@ -32,13 +32,13 @@ const Search = () => {
     }
     return (
         <div>
-            <Container className='text-center m-5 d-flex align-items-center' >
+            <Container className='text-center p-0 mt-5 d-flex align-items-center' >
                 <Form.Label htmlFor="disabledTextInput" className="flex-grow-1"><input className="w-100 mt-2" placeholder="Enter repo URL" type="text" value={value} onChange={handleChange} /></Form.Label>
 
                 <button className='m-2' onClick={click}>Load issues</button>
 
             </Container>
-            <Container>
+            <Container className='p-0'>
                 {look ?
                     <Links owner={owner} repo={repo} />
                     :
