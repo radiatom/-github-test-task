@@ -8,15 +8,15 @@ export type DataItemType = {
     login: string;
     comments: number;
 }
-export type issyesCardType = {
+export type issuesCardType = {
     id: number
     title: string
     items: Array<DataItemType>
 }
 export type defoultStateType = {
-    data: Array<issyesCardType>
+    data: Array<issuesCardType>
 }
 export type setDataListType = {
     type: typeof SET_DATA_LIST
-    data: Array<issyesCardType>
+    data: Array<issuesCardType>
 }
