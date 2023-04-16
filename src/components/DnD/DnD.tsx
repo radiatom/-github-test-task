@@ -2,23 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { issuesListsDataSelector } from '../../selectors/selectors';
 import { useSelector } from 'react-redux';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import { DataItemType, issyesCardType } from '../../Types/types';
 
 const DnD = () => {
-    const [boards, setBoards] = useState([])
-    const issueData = useSelector(issuesListsDataSelector)
+    const [boards, setBoards] = useState<issyesCardType[]>([])
+    const issueData: Array<issyesCardType> = useSelector(issuesListsDataSelector)
     useEffect(() => {
         setBoards(issueData)
     }, [issueData])
+    //@ts-ignore
+    const [currentBoard, setCurrentBoard] = useState<issyesCardType>(null)
+    //@ts-ignore
+    const [currentItem, setCurrentItem] = useState<DataItemType>(null)
 
-    const [currentBoard, setCurrentBoard] = useState(null)
-    const [currentItem, setCurrentItem] = useState(null)
-
-    const dragStartHandler = (board, item) => {
+    const dragStartHandler = (board: issyesCardType, item: DataItemType) => {
         setCurrentBoard(board)
         setCurrentItem(item)
     }
-
-    const dropHandler = (e, board, item) => {
+    const dropHandler = (e: any, board: issyesCardType, item: DataItemType) => {
         e.stopPropagation()
         e.preventDefault()
         const currentIndex = currentBoard.items.indexOf(currentItem)
@@ -35,7 +36,7 @@ const DnD = () => {
             return b
         }))
     }
-    const dropCardHandler = (board) => {
+    const dropCardHandler = (board: issyesCardType) => {
         board.items.push(currentItem)
         const currentIndex = currentBoard.items.indexOf(currentItem)
         currentBoard.items.splice(currentIndex, 1)
