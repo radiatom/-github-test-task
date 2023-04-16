@@ -6,11 +6,13 @@ import Search from './components/Search/Search';
 import { Row, Container, Col } from 'react-bootstrap';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import DnD from './components/DnD/DnD';
 
 
 function App() {
   return (
     <div>
+      <DnD />
       <DndProvider backend={HTML5Backend}>
         <Search />
         <Container className='p-0'>
@@ -21,7 +23,6 @@ function App() {
           </Row>
         </Container>
       </DndProvider>
-
     </div>
   );
 }
