@@ -9,3 +9,6 @@ export const issueInProgressListDataSelector = (state: appStateType) => {
 export const issueDoneListDataSelector = (state: appStateType) => {
     return state.doneListIssues.data
 }
+export const issuesListsDataSelector = (state: any) => {
+    return state.reducer.data
+}

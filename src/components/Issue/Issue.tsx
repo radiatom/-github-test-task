@@ -77,7 +77,7 @@ const Issue: React.FC<propsType> = ({ id, title, index, moveCard, number, create
     drag(drop(ref))
     return (
         <Container>
-            <Card ref={ref} border="primary p-2 mt-2 mb-2 " data-handler-id={handlerId}>
+            <Card ref={ref} border="primary p-2 mt-2 mb-2 cursor-grab " data-handler-id={handlerId}>
                 <p className='fw-bold' >{title}</p>
                 <p>#{number} time of last activity: {created_at}</p>
                 <p>{login} | coments: {comments}</p>

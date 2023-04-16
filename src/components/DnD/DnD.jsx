@@ -1,35 +1,25 @@
-import React, { useState } from 'react';
-import './DnD.css'
+import React, { useState, useEffect } from 'react';
+import { issuesListsDataSelector } from '../../selectors/selectors';
+import { useSelector } from 'react-redux';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 
 const DnD = () => {
-    const [boards, setBoards] = useState([
-        { id: 1, title: "ToDo", items: [{ id: 1, title: 'Rest in the Ukrainian Crimea' }, { id: 2, title: 'Eat' }, { id: 3, title: 'Go to sleep' }] },
-        { id: 2, title: "In Progress", items: [{ id: 4, title: 'Destroy rUSSIA' }, { id: 5, title: 'Burn mOSCOW' }, { id: 6, title: 'Destroy pUTIN' }] },
-        { id: 3, title: "Done", items: [{ id: 7, title: 'Sink the cruiser mOSCOW' }, { id: 8, title: 'Free Kherson' }, { id: 9, title: 'Pet the cat' }] },
-    ])
+    const [boards, setBoards] = useState([])
+    const issueData = useSelector(issuesListsDataSelector)
+    useEffect(() => {
+        setBoards(issueData)
+    }, [issueData])
 
     const [currentBoard, setCurrentBoard] = useState(null)
     const [currentItem, setCurrentItem] = useState(null)
-    const dragOverHandler = (e) => {
-        e.preventDefault()
-        if (e.target.className === 'item') {
-            e.target.style.boxShadow = '0 4px 3px gray'
-        }
-    }
-    const dragLeaveHandler = (e) => {
-        e.target.style.boxShadow = 'none'
-    }
-    const dragStartHandler = (e, board, item) => {
+
+    const dragStartHandler = (board, item) => {
         setCurrentBoard(board)
         setCurrentItem(item)
     }
-    const dragEndHandler = (e) => {
-        e.target.style.boxShadow = 'none'
-    }
+    
     const dropHandler = (e, board, item) => {
-
         e.stopPropagation()
-
         e.preventDefault()
         const currentIndex = currentBoard.items.indexOf(currentItem)
         currentBoard.items.splice(currentIndex, 1)
@@ -44,9 +34,8 @@ const DnD = () => {
             }
             return b
         }))
-        e.target.style.boxShadow = 'none'
     }
-    const dropCardHandler = (e, board) => {
+    const dropCardHandler = (board) => {
         board.items.push(currentItem)
         const currentIndex = currentBoard.items.indexOf(currentItem)
         currentBoard.items.splice(currentIndex, 1)
@@ -59,32 +48,36 @@ const DnD = () => {
             }
             return b
         }))
-        e.target.style.boxShadow = 'none'
     }
+
     return (
-            <div className='dnd'>
-                {boards.map(board =>
-                    <div
-                        className='board'
-                        onDragOver={(e) => dragOverHandler(e)}
-                        onDrop={(e) => dropCardHandler(e, board)}
-                    >
-                        <div className='board__title'>{board.title}</div>
-                        {board.items.map(item =>
-                            <div
-                                onDragOver={(e) => dragOverHandler(e)}
-                                onDragLeave={(e) => dragLeaveHandler(e)}
-                                onDragStart={(e) => dragStartHandler(e, board, item)}
-                                onDragEnd={(e) => dragEndHandler(e)}
-                                onDrop={(e) => dropHandler(e, board, item)}
-                                // className="todo"
-                                draggable={true}
-                                className='item'
-                            >
-                                {item.title}</div>)}
-                    </div>
-                )}
-            </div>
+        <Row className='p-0'>
+            {boards.map(board =>
+                <Col
+                    className='p-0'
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => dropCardHandler(board)}
+                >
+                    <Container className='p-2 h-100'>
+                        <h3 className="text-center ">{board.title}</h3>
+                        <Card border="primary h-100 w-100 bg-secondary" >
+                            {board.items.map(item =>
+                                <Container
+                                    onDragStart={(e) => dragStartHandler(board, item)}
+                                    onDrop={(e) => dropHandler(e, board, item)}
+                                    draggable={true}
+                                >
+                                    <Card border="primary p-2 mt-2 mb-2 " >
+                                        <p className='fw-bold' >{item.title}</p>
+                                        <p>#{item.number} time of last activity: {item.created_at}</p>
+                                        <p>{item.login} | coments: {item.comments}</p>
+                                    </Card>
+                                </Container>)}
+                        </Card>
+                    </Container>
+                </Col>
+            )}
+        </Row>
     );
 }
 

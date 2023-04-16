@@ -12,15 +12,13 @@ import DnD from './components/DnD/DnD';
 function App() {
   return (
     <div>
-      <DnD />
       <DndProvider backend={HTML5Backend}>
         <Search />
         <Container className='p-0'>
-          <Row className='p-0'>
-            <Col className='p-0'><ToDoList /></Col>
-            <Col className='p-0'><InProgressList /></Col>
-            <Col className='p-0'><DoneList /></Col>
-          </Row>
+            <DnD />
+            {/* <Col className='p-0'><ToDoList /></Col> */}
+            {/* <Col className='p-0'><InProgressList /></Col> */}
+            {/* <Col className='p-0'><DoneList /></Col> */}
         </Container>
       </DndProvider>
     </div>
