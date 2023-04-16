@@ -58,7 +58,7 @@ const CardsIssues = () => {
 
     return (
         <Container className='p-0'>
-            <Row className='p-0'>
+            <Row className='p-0 ' >
                 {boards.map(board =>
                     <CardIssues
                         key={board.id}

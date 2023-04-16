@@ -13,11 +13,11 @@ type propsType = {
 const CardIssues: React.FC<propsType> = ({ board, dropCardHandler, dragStartHandler, dropHandler }) => {
     return (
         <Col
-            className='p-0'
+            className='p-0 '
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => dropCardHandler(board)}
         >
-            <Container className='p-2 h-100'>
+            <Container className='p-2 h-100 ' style={{ width: '380px' }}>
                 <h3 className="text-center ">{board.title}</h3>
                 <Card border="primary h-100 w-100 bg-secondary" >
                     {board.items.map(item =>
