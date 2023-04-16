@@ -17,7 +17,7 @@ const DnD = () => {
         setCurrentBoard(board)
         setCurrentItem(item)
     }
-    
+
     const dropHandler = (e, board, item) => {
         e.stopPropagation()
         e.preventDefault()
@@ -54,6 +54,7 @@ const DnD = () => {
         <Row className='p-0'>
             {boards.map(board =>
                 <Col
+                    key={board.id}
                     className='p-0'
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={(e) => dropCardHandler(board)}
@@ -63,6 +64,7 @@ const DnD = () => {
                         <Card border="primary h-100 w-100 bg-secondary" >
                             {board.items.map(item =>
                                 <Container
+                                    key={item.id}
                                     onDragStart={(e) => dragStartHandler(board, item)}
                                     onDrop={(e) => dropHandler(e, board, item)}
                                     draggable={true}
