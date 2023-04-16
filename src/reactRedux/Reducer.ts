@@ -1,7 +1,6 @@
 import { ThunkDispatch } from "redux-thunk"
 import { getDataClosedIssues, getDataOpenIssues } from "../api/api"
-import { DataItemType, issyesCardType, setDataListType } from "../Types/types"
-import { defoultStateType } from "./ToDoListReducer"
+import { DataItemType, issyesCardType, setDataListType, defoultStateType } from "../Types/types"
 
 
 export const SET_DATA_LIST: string = 'Reducer/SET_DATA_LIST'
@@ -29,7 +28,7 @@ const Reducer = (state: defoultStateType = defoultState, action: setDataListType
     }
 }
 
-export const setListIssues = (owner: string, repo: string): any => async (dispatch:  ThunkDispatch<defoultStateType, unknown, setDataListType>) => {
+export const setListIssues = (owner: string, repo: string): any => async (dispatch: ThunkDispatch<defoultStateType, unknown, setDataListType>) => {
     let id: number = 1
 
     const dataIssue = await getDataOpenIssues(owner, repo)

@@ -13,7 +13,7 @@ export type issyesCardType = {
     title: string
     items: Array<DataItemType>
 }
-export const defoultStateType = {
+export type defoultStateType = {
     data: Array<issyesCardType>
 }
 export type setDataListType = {

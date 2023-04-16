@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import Links from './Links/Links';
 import { useDispatch } from 'react-redux';
-import { setToDoListIssues } from '../../reactRedux/ToDoListReducer';
-import { setInProgressListIssues } from '../../reactRedux/InProgressListReducer';
-import { setDoneListIssues } from '../../reactRedux/DoneListReducer';
 import Form from 'react-bootstrap/Form'
 import { Container } from 'react-bootstrap';
 import { setListIssues } from '../../reactRedux/Reducer';
@@ -26,11 +23,7 @@ const Search = () => {
 
     const dispatch = useDispatch()
     const click = () => {
-        dispatch(setToDoListIssues(owner, repo))
-        dispatch(setInProgressListIssues(owner, repo))
-        dispatch(setDoneListIssues(owner, repo))
         dispatch(setListIssues(owner, repo))
-
         openLink()
     }
     return (

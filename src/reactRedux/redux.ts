@@ -1,14 +1,8 @@
 import { applyMiddleware, combineReducers, compose, legacy_createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
-import ToDoListReducer from "./ToDoListReducer";
-import InProgressListReducer from "./InProgressListReducer";
-import DoneListReducer from "./DoneListReducer";
 import Reducer from "./Reducer";
 
 const redusers = combineReducers({
-    toDoListIssues: ToDoListReducer,
-    inProgressListIssues: InProgressListReducer,
-    doneListIssues: DoneListReducer,
     reducer: Reducer
 })
 type reducersType = typeof redusers
