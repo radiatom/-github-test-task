@@ -1,13 +1,13 @@
 import React from 'react';
 import Search from './components/Search/Search';
-import DnD from './components/DnD/DnD';
+import CardsIssues from './components/CardsIssues/CardsIssues';
 
 
 function App() {
   return (
     <div>
       <Search />
-      <DnD />
+      <CardsIssues />
     </div>
   );
 }

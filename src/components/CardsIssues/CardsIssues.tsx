@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { DataItemType, issyesCardType } from '../../Types/types';
 
-const DnD = () => {
+const CardsIssues = () => {
     const [boards, setBoards] = useState<issyesCardType[]>([])
     const issueData: Array<issyesCardType> = useSelector(issuesListsDataSelector)
     useEffect(() => {
@@ -87,4 +87,4 @@ const DnD = () => {
     );
 }
 
-export default DnD;
+export default CardsIssues;
