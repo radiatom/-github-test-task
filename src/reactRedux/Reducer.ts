@@ -1,7 +1,6 @@
 import { ThunkDispatch } from "redux-thunk"
 import { getDataClosedIssues, getDataOpenIssues } from "../api/api"
 import { DataItemType, issuesCardType, setDataListType, defoultStateType } from "../Types/types"
-import { issuesListsDataSelector } from "../selectors/selectors"
 
 
 export const SET_DATA_LIST: string = 'Reducer/SET_DATA_LIST'
@@ -28,10 +27,10 @@ const Reducer = (state: defoultStateType = defoultState, action: setDataListType
     }
 }
 
-const defoultStateResaults: any  = {}
+export const defoultStateResaults: any  = {}
 
 export const setListIssues = (owner: string, repo: string): any => async (dispatch: ThunkDispatch<defoultStateType, unknown, setDataListType>) => {
-
+debugger
     const repoFullName: string = `${owner}/${repo}`
     
     if (defoultStateResaults.hasOwnProperty(repoFullName)) {
