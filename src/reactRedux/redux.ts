@@ -10,9 +10,9 @@ export type appStateType= ReturnType<reducersType>
 
 //@ts-ignore
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
- const store = legacy_createStore(redusers,composeEnhancers(applyMiddleware(thunkMiddleware)));
+ export const store = legacy_createStore(redusers,composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-// const store = legacy_createStore(redusers, applyMiddleware(thunkMiddleware),) це оригінальний творець, а веще перероблений, щоб можна 
+// const store = legacy_createStore(redusers, applyMiddleware(thunkMiddleware),) це оригінальний творець, а вище перероблений, щоб можна 
 // було користуватись розширенням хрома redux DevTols
 
 //@ts-ignore

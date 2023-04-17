@@ -18,5 +18,5 @@ export type defoultStateType = {
 }
 export type setDataListType = {
     type: typeof SET_DATA_LIST
-    data: Array<issuesCardType>
+    res: Array<issuesCardType>
 }

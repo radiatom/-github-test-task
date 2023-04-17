@@ -4,16 +4,19 @@ import { useSelector } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 import { DataItemType, issuesCardType } from '../../Types/types';
 import CardIssues from './CardIssues/CardIssues';
+import { useDispatch } from 'react-redux';
+import { setDataList } from '../../reactRedux/Reducer';
 
 const CardsIssues = () => {
+    const dispatch = useDispatch()
     const [boards, setBoards] = useState<issuesCardType[]>([])
     const issueData = useSelector(issuesListsDataSelector) as Array<issuesCardType>;
     useEffect(() => {
         setBoards(issueData)
     }, [issueData])
 
-    const [currentBoard, setCurrentBoard] = useState<issuesCardType|undefined>()
-    const [currentItem, setCurrentItem] = useState<DataItemType|undefined>()
+    const [currentBoard, setCurrentBoard] = useState<issuesCardType | undefined>()
+    const [currentItem, setCurrentItem] = useState<DataItemType | undefined>()
 
     const dragStartHandler = (board: issuesCardType, item: DataItemType) => {
         setCurrentBoard(board)
@@ -29,7 +32,7 @@ const CardsIssues = () => {
         }
         const dropIndex = board.items.indexOf(item)
         board.items.splice(dropIndex + 1, 0, currentItem!)
-        setBoards(boards.map(b => {
+        dispatch(setDataList(boards.map(b => {
             if (b.id === board.id) {
                 return board
             }
@@ -37,14 +40,14 @@ const CardsIssues = () => {
                 return currentBoard
             }
             return b
-        }))
+        })))
     }
     const dropCardHandler = (board: issuesCardType) => {
         if (currentBoard && currentItem) {
             board.items.push(currentItem)
             const currentIndex = currentBoard.items.indexOf(currentItem)
             currentBoard.items.splice(currentIndex, 1)
-            setBoards(boards.map(b => {
+            dispatch(setDataList(boards.map(b => {
                 if (b.id === board.id) {
                     return board
                 }
@@ -52,7 +55,7 @@ const CardsIssues = () => {
                     return currentBoard
                 }
                 return b
-            }))
+            })))
         }
     }
 
