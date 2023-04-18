@@ -1,7 +1,6 @@
 import React from 'react'
 import Reducer, { setDataList } from './Reducer'
 
-
 it('setDataList add new state', () => {
     const res = [{
         id: 2,

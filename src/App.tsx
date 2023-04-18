@@ -6,6 +6,7 @@ import CardsIssues from './components/CardsIssues/CardsIssues';
 function App() {
   return (
     <div>
+      Search
       <Search />
       <CardsIssues />
     </div>
