@@ -1,8 +1,15 @@
 import React from 'react'
 import { Card, Container } from 'react-bootstrap';
+import { DataItemType } from '../../../../Types/types';
+import { issuesCardType } from '../../../../Types/types';
 
-
-const Issue = ({ item, board, dragStartHandler, dropHandler }: any) => {
+type propsType = {
+    item: DataItemType
+    board: issuesCardType
+    dragStartHandler: (board: issuesCardType, item: DataItemType) => void
+    dropHandler: (e: any, board: issuesCardType, item: DataItemType) => void
+}
+const Issue: React.FC<propsType> = ({ item, board, dragStartHandler, dropHandler }) => {
 
     return (
         <Container

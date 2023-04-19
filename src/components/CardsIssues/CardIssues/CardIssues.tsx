@@ -10,6 +10,7 @@ type propsType = {
     dropHandler: (e: any, board: issuesCardType, item: DataItemType) => void
 
 }
+
 const CardIssues: React.FC<propsType> = ({ board, dropCardHandler, dragStartHandler, dropHandler }) => {
     return (
         <Col

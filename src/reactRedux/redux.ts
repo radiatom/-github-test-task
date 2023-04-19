@@ -2,9 +2,12 @@ import { applyMiddleware, combineReducers, compose, legacy_createStore } from "r
 import thunkMiddleware from "redux-thunk";
 import Reducer from "./Reducer";
 
+
 const redusers = combineReducers({
     reducer: Reducer
 })
+
+
 type reducersType = typeof redusers
 export type appStateType= ReturnType<reducersType>
 

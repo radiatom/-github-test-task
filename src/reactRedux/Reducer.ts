@@ -1,38 +1,55 @@
 import { ThunkDispatch } from "redux-thunk"
 import { getDataClosedIssues, getDataOpenIssues } from "../api/api"
-import { DataItemType, issuesCardType, setDataListType, defoultStateType } from "../Types/types"
+import { DataItemType, issuesCardType, setDataListType, initialStateType, setNameRepoType } from "../Types/types"
 
 
 export const SET_DATA_LIST: string = 'Reducer/SET_DATA_LIST'
-
 export const setDataList = (res: Array<issuesCardType>): setDataListType => {
     return {
         type: SET_DATA_LIST,
         res: res
     }
 }
-const defoultState: defoultStateType = {
-    data: []
+
+export const SET_NAME_REPO: string = 'Reducer/SET_NAME_REPO'
+export const setNameRepo = (owner: string, repo: string): setNameRepoType => {
+    return {
+        type: SET_NAME_REPO,
+        owner: owner,
+        repo: repo
+    }
 }
 
-const Reducer = (state: defoultStateType = defoultState, action: setDataListType) => {
+export const initialState: initialStateType = {
+    data: [],
+    repoLink: {}
+}
+
+const Reducer = (state: initialStateType = initialState, action: setDataListType & setNameRepoType) => {
     switch (action.type) {
         case SET_DATA_LIST:
             return {
                 ...state,
                 data: action.res
             }
-        default:
-            return state
+        case SET_NAME_REPO:
+            return {
+                ...state,
+                repoLink: {
+                    owner: action.owner,
+                    repo: action.repo,
+                }
+
+            }
+        default: return state
     }
 }
 
-export const defoultStateResaults: any  = {}
+export const defoultStateResaults: any = {}
 
-export const setListIssues = (owner: string, repo: string): any => async (dispatch: ThunkDispatch<defoultStateType, unknown, setDataListType>) => {
-debugger
+export const setListIssues = (owner: string, repo: string): any => async (dispatch: ThunkDispatch<initialStateType, unknown, setDataListType>) => {
     const repoFullName: string = `${owner}/${repo}`
-    
+
     if (defoultStateResaults.hasOwnProperty(repoFullName)) {
         dispatch(setDataList(defoultStateResaults[repoFullName]));
     } else {

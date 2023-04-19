@@ -3,7 +3,10 @@ import Links from './Links/Links';
 import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form'
 import { Container } from 'react-bootstrap';
-import { setListIssues } from '../../reactRedux/Reducer';
+import { setListIssues, setNameRepo } from '../../reactRedux/Reducer';
+import { useSelector } from 'react-redux';
+import { nameRepoSelector } from '../../selectors/selectors';
+import { nameRepoType } from '../../Types/types';
 
 
 const Search = () => {
@@ -11,10 +14,8 @@ const Search = () => {
     const handleChange = (event: any) => {
         setValue(event.target.value);
     }
-    const [look, setLook] = useState(false)
-    const openLink = () => {
-        setLook(true);
-    }
+    const repoName = useSelector(nameRepoSelector) as nameRepoType
+
     const splitUrlOwer = value.split('/')
     const owner = splitUrlOwer[3]
 
@@ -23,22 +24,24 @@ const Search = () => {
 
     const dispatch = useDispatch()
     const click = () => {
+        dispatch(setNameRepo(owner, repo))
         dispatch(setListIssues(owner, repo))
-        openLink()
+        setValue('')
     }
     return (
         <div>
             <Container className='text-center p-0 mt-5 d-flex align-items-center' >
-                <Form.Label htmlFor="disabledTextInput" className="flex-grow-1"><input className="w-100 mt-2" placeholder="Enter repo URL" type="text" value={value} onChange={handleChange} /></Form.Label>
-
+                <Form.Label htmlFor="disabledTextInput" className="flex-grow-1">
+                    <input className="w-100 mt-2" placeholder="Enter repo URL" type="text" value={value} onChange={handleChange} />
+                </Form.Label>
                 <button className='m-2' onClick={click}>Load issues</button>
-
             </Container>
             <Container className='p-0'>
-                {look ?
-                    <Links owner={owner} repo={repo} />
+                {repoName.owner === undefined ?
+                    null
                     :
-                    null}
+                    <Links owner={repoName.owner} repo={repoName.repo} />
+                }
                 <p>https://github.com/facebook/react</p>
                 <p>https://github.com/facebook/react-native</p>
             </Container>
