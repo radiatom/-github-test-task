@@ -42,8 +42,8 @@ const Search = () => {
                     :
                     <Links owner={repoName.owner} repo={repoName.repo} />
                 }
-                <p>https://github.com/facebook/react</p>
-                <p>https://github.com/facebook/react-native</p>
+                {/* <p>https://github.com/facebook/react</p> */}
+                {/* <p>https://github.com/facebook/react-native</p> */}
             </Container>
         </div>
     );
