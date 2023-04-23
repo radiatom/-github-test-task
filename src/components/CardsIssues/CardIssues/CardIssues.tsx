@@ -18,11 +18,16 @@ const CardIssues: React.FC<propsType> = ({
 }) => {
   return (
     <Col
+      data-testid="card-issues-col"
       className="p-0 "
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => dropCardHandler(board)}
     >
-      <Container className="p-2 h-100 " style={{ width: "380px" }}>
+      <Container
+        data-testid="card-issues-container"
+        className="p-2 h-100 "
+        style={{ width: "380px" }}
+      >
         <h3 className="text-center ">{board.title}</h3>
         <Card border="primary h-100 w-100 bg-secondary">
           {board.items.map((item) => (
